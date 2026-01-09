@@ -1,8 +1,7 @@
 #### Created by David N Preiss
 
 ## TO DO:
-# All Customers Page
-# All Pools Page
+# 1/9/2026: Fixed Error w MAX_WEEKS 
 
 ### TABLE OF CONTENTS
 """
@@ -26,7 +25,7 @@
 
 ### Hard-coded Global Values
 if True:
-    MAX_WEEKS = 52
+    MAX_WEEKS = 5
     WEB_ARCHIVE_PATH = "../../Web Archive"
     CUSTOMERS_POOLS_XLSX = "Customer Database.xlsx"
     C_ID_COL = 1
@@ -272,7 +271,8 @@ if True:
                 fnames = os.listdir(WebArchive_PoolID_path)
                 for file in range(0,MAX_WEEKS):
                     try:
-                        fileName = os.path.basename(fnames[file])
+                        fileNumber = len(fnames)-file
+                        fileName = os.path.basename(fnames[fileNumber-1])
                         # print(f"\t{fileName}") #debug
                         # import and rename the pdf into the PoolID folder
                         # Source path
@@ -298,7 +298,7 @@ if True:
                     except Exception as e:
                         print(style.RED + f"!--ERROR:{e}" + style.RESET)
                         break
-                print(f"\t {file} pdfs transferred")
+                print(f"\t {MAX_WEEKS} pdfs transferred")
             
             # save PoolID.html
             pid_html_content += "</ul>\n</body>\n</html>"
